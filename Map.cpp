@@ -24,6 +24,14 @@ Map::Map(CoreResourceHolder& initResourceHolder) :
 Map::~Map()
 {
 	objCounter--;
+	for (auto& vec : allTiles)
+	{
+		for (std::size_t i = 0; i < vec.size(); i++)
+		{
+			delete vec[i];
+			vec[i] = nullptr;
+		}
+	}
 }
 
 void Map::initMap(sf::Vector2f initTileSize, sf::Vector2i initTileNumber, sf::Vector2i initNumberOfVisibleTiles, sf::Vector2f initdrawOffset)
